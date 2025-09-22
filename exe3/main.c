@@ -40,8 +40,13 @@ void process_task(void *p) {
             ind = (ind + 1) % 5;
             if(cont < 5){
                 cont++;
+                
+                if(cont == 5){
+                    printf("%ld \n", soma / 5);
+                }
+            } else{
+                printf("%ld \n", soma / 5);
             }
-            printf("%ld \n", soma / cont);
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
