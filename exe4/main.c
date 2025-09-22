@@ -36,7 +36,7 @@ int main(){
 
     adc_init();
     adc_gpio_init(PIN_ADC);
-    adc_select_input(0);
+    adc_select_input(2);
 
     int current_delay_ms = 0;
     bool est_led = false;
