@@ -19,12 +19,12 @@ void adc_task(void *p) {
 
     uint16_t result;
     while (1) {
-        adc_select_input(1); // Select ADC input 1 (GPIO27)
+        adc_select_input(1);
         result = adc_read();
         printf("voltage 1: %f V\n", result * conversion_factor);
 
         // CÓDIGO AQUI
-        adc_select_input(0); // Seleciona o ADC input 0 (GPIO26)
+        adc_select_input(0);
         result = adc_read();
         printf("voltage 2: %f V\n", result * conversion_factor);
 
