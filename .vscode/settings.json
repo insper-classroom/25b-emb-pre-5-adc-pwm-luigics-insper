@@ -40,6 +40,8 @@
     "files.associations": {
         "pwm.h": "c",
         "stdio.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "data.h": "c",
+        "task.h": "c"
     }
 }

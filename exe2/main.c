@@ -24,7 +24,7 @@ void led_task(void *p) {
     uint slice_num_g = pwm_gpio_to_slice_num(PWM_1_PIN);
     pwm_set_clkdiv(slice_num_g, 125);
     pwm_set_wrap(slice_num_g, 100);
-    pwm_set_chan_level(slice_num_g, PWM_CHAN_B, 20);
+    pwm_set_chan_level(slice_num_g, PWM_CHAN_A, 20);
     pwm_set_enabled(slice_num_g, true);
 
     while (true) {
