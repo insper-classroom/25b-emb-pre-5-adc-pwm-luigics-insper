@@ -23,30 +23,27 @@ void data_task(void *p) {
     }
 }
 
-void process_task(void *p) {
-    int data = 0;
+void NewFunction(int buffer[5], int data) {
+    buffer[0] = buffer[1];
+    buffer[1] = buffer[2];
+    buffer[2] = buffer[3];
+    buffer[3] = buffer[4];
+    buffer[4] = data;
+}
 
-    int buffer[5] = {0};
-    int ind = 0;
-    long soma = 0;
-    int cont = 0;
+void process_task(void *p) {
+    int data;
+
+    int buffer[5] = {0,0,0,0,0};
+    int soma, med;
 
     while (true) {
-        if (xQueueReceive(xQueueData, &data, 100)) {
+        if (xQueueReceive(xQueueData, &data, 100) == pdTRUE)  {
             // implementar filtro aqui!
-            soma -= buffer[ind];
-            buffer[ind] = data;
-            soma += data;
-            ind = (ind + 1) % 5;
-            if(cont < 5){
-                cont++;
-                
-                if(cont == 5){
-                    printf("%ld \n", soma / 5);
-                }
-            } else{
-                printf("%ld \n", soma / 5);
-            }
+            NewFunction(buffer,data);
+            soma = (buffer[0] + buffer[1] + buffer[2] + buffer[3] + buffer[4]);
+            med = soma/5;
+            printf("%d \n", med);
 
             // deixar esse delay!
             vTaskDelay(pdMS_TO_TICKS(50));
