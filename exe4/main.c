@@ -39,8 +39,8 @@ int main(){
     adc_select_input(2);
 
     int current_delay_ms = 0;
-    bool est_led = false;
-    bool primeira_vez = true; 
+    bool led_st = false;
+    bool first_time = true; 
 
     while(1){
         uint16_t adc_raw = adc_read();
@@ -54,23 +54,23 @@ int main(){
             new_delay_ms = 500;
         }
 
-        if((new_delay_ms != current_delay_ms) || primeira_vez == true){
+        if((new_delay_ms != current_delay_ms) || first_time == true){
             current_delay_ms = new_delay_ms;
-            primeira_vez = false;
+            first_time = false;
             cancel_repeating_timer(&timer_led);
 
             if(current_delay_ms > 0){
                 add_repeating_timer_ms(current_delay_ms, timer_led_callback, NULL, &timer_led);
             } else {
-                est_led = false;
-                gpio_put(PIN_LED_B, est_led);
+                led_st = false;
+                gpio_put(PIN_LED_B, led_st);
             }
         }
 
         if(flag_led){
             flag_led = 0;//flag
-            est_led = !est_led;
-            gpio_put(PIN_LED_B, est_led);
+            led_st = !led_st;
+            gpio_put(PIN_LED_B, led_st);
         }
     }
 }

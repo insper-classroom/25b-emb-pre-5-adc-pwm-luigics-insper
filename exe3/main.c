@@ -23,7 +23,7 @@ void data_task(void *p) {
     }
 }
 
-void NewFunction(int buffer[5], int data) {
+void func_buffer(int buffer[5], int data) {
     buffer[0] = buffer[1];
     buffer[1] = buffer[2];
     buffer[2] = buffer[3];
@@ -40,7 +40,7 @@ void process_task(void *p) {
     while (true) {
         if (xQueueReceive(xQueueData, &data, 100) == pdTRUE)  {
             // implementar filtro aqui!
-            NewFunction(buffer,data);
+            func_buffer(buffer,data);
             soma = (buffer[0] + buffer[1] + buffer[2] + buffer[3] + buffer[4]);
             med = soma/5;
             printf("%d \n", med);
